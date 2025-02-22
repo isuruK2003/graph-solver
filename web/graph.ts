@@ -7,7 +7,7 @@ export class Graph {
         this.vertices = [];
     }
 
-    private sort(): void{
+    private sort(): void {
         this.vertices.sort((a: Vertex, b: Vertex) => {
             return a.getDistance() - b.getDistance()
         });
@@ -22,7 +22,7 @@ export class Graph {
         const vertex = this.vertices.shift();
         if (!vertex) throw new Error("No vertices available to remove.");
         return vertex;
-    }    
+    }
 
     public getVertex(id: number): Vertex {
         for (let i = 0; i < this.vertices.length; i++) {
@@ -38,6 +38,6 @@ export class Graph {
     }
 
     public isEmpty(): boolean {
-        return this.vertices.length > 0 ? false: true;
+        return this.vertices.length > 0 ? false : true;
     }
 }

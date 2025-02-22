@@ -6,7 +6,7 @@ function updateDistances(graph: Graph, startVertexId: number): Graph {
     const updatedGraph = new Graph();
     try {
         graph.getVertex(startVertexId).setDistance(0);
-        while(!graph.isEmpty()) {
+        while (!graph.isEmpty()) {
             const vertex = graph.removeVertex();
             vertex.getLinks().forEach((link: Link) => {
                 const currentDistance = link.vertex.getDistance();
@@ -19,7 +19,7 @@ function updateDistances(graph: Graph, startVertexId: number): Graph {
             updatedGraph.addVertex(vertex);
         }
     }
-    catch(e) {
+    catch (e) {
         console.error(e)
     }
     finally {
@@ -29,10 +29,10 @@ function updateDistances(graph: Graph, startVertexId: number): Graph {
 
 function getShortestPath(destination: Vertex): Vertex[] {
     const path: Vertex[] = [];
-    let currentVertex: Vertex|null = destination;
+    let currentVertex: Vertex | null = destination;
     path.push(destination)
     while (currentVertex) {
-        const previous: Vertex|null = currentVertex.getPrevious();
+        const previous: Vertex | null = currentVertex.getPrevious();
         if (previous) {
             path.push(previous);
         }
@@ -41,7 +41,7 @@ function getShortestPath(destination: Vertex): Vertex[] {
     return path.reverse();
 }
 
-function main():void {
+function main(): void {
     const graph = new Graph();
 
     graph.addVertex(new Vertex(1, "A"));
@@ -55,7 +55,7 @@ function main():void {
     graph.getVertex(1).linkTo(graph.getVertex(3), 2);
 
     graph.getVertex(2).linkTo(graph.getVertex(4), 2);
-    
+
     graph.getVertex(3).linkTo(graph.getVertex(4), 4);
     graph.getVertex(3).linkTo(graph.getVertex(5), 2);
 
@@ -63,7 +63,7 @@ function main():void {
 
     const updatedGraph: Graph = updateDistances(graph, 1);
     const path: Vertex[] = getShortestPath(updatedGraph.getVertex(5));
-    
+
     let pathString: string[] = [];
     path.forEach((p) => {
         pathString.push(p.getName());
